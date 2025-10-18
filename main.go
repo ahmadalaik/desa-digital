@@ -2,11 +2,17 @@ package main
 
 import (
 	"github.com/ahmadalaik/desa-digital/config"
+	"github.com/ahmadalaik/desa-digital/database"
+	"github.com/ahmadalaik/desa-digital/database/seeders"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	config.LoadEnv()
+
+	database.InitDB()
+
+	seeders.Seed()
 
 	r := gin.Default()
 

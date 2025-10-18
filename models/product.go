@@ -12,8 +12,8 @@ type Product struct {
 	Price     int       `json:"price"`
 	Phone     string    `json:"phone"`
 	Address   string    `json:"address"`
-	UserId    uint      `json:"user_id"`
-	User      User      `json:"user" gorm:"foreignKey:UserId"`
+	UserID    uint      `json:"user_id"`
+	User      User      `json:"user" gorm:"foreignKey:UserID"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
