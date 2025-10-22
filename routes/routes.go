@@ -24,7 +24,15 @@ func SetupRouter() *gin.Engine {
 	protected.GET("/permissions/:id", middlewares.Permission("permissions-show"), adminController.FindPermissonByID)
 	protected.PUT("/permissions/:id", middlewares.Permission("permissions-update"), adminController.UpdatePermission)
 	protected.DELETE("/permissions/:id", middlewares.Permission("permissions-delete"), adminController.DeletePermission)
-	protected.GET("/permissions/all", middlewares.Permission("permissions-index"), adminController.DeletePermission)
+	protected.GET("/permissions/all", middlewares.Permission("permissions-index"), adminController.FindAllPermissions)
+
+	// role routes
+	protected.GET("/roles", middlewares.Permission("roles-index"), adminController.FindRoles)
+	protected.POST("/roles", middlewares.Permission("roles-create"), adminController.CreateRole)
+	protected.GET("/roles/:id", middlewares.Permission("roles-show"), adminController.FindRoleByID)
+	protected.PUT("/roles/:id", middlewares.Permission("roles-update"), adminController.UpdateRole)
+	protected.DELETE("/roles/:id", middlewares.Permission("roles-delete"), adminController.DeleteRole)
+	protected.GET("/roles/all", middlewares.Permission("roles-index"), adminController.FindAllRoles)
 
 	return router
 }
