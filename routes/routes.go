@@ -34,5 +34,12 @@ func SetupRouter() *gin.Engine {
 	protected.DELETE("/roles/:id", middlewares.Permission("roles-delete"), adminController.DeleteRole)
 	protected.GET("/roles/all", middlewares.Permission("roles-index"), adminController.FindAllRoles)
 
+	// user routes
+	protected.GET("/users", middlewares.Permission("users-index"), adminController.FindUsers)
+	protected.POST("/users", middlewares.Permission("users-create"), adminController.CreateUser)
+	protected.GET("/users/:id", middlewares.Permission("users-show"), adminController.FindUserByID)
+	protected.PUT("/users/:id", middlewares.Permission("users-Update"), adminController.UpdateUser)
+	protected.DELETE("/users/:id", middlewares.Permission("users-delete"), adminController.DeleteUser)
+
 	return router
 }

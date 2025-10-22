@@ -12,7 +12,7 @@ import (
 
 func FindRoles(c *gin.Context) {
 	var roles []models.Role
-	var roleResponse []structs.RoleResponse
+	var roleResponses []structs.RoleResponse
 	var total int64
 
 	search, page, limit, offset := helpers.GetPaginationParams(c)
@@ -46,7 +46,7 @@ func FindRoles(c *gin.Context) {
 			})
 		}
 
-		roleResponse = append(roleResponse, structs.RoleResponse{
+		roleResponses = append(roleResponses, structs.RoleResponse{
 			ID:          role.ID,
 			Name:        role.Name,
 			Permissions: permissionResponse,
@@ -55,7 +55,7 @@ func FindRoles(c *gin.Context) {
 		})
 	}
 
-	helpers.PaginateResponse(c, roleResponse, total, page, limit, baseURL, search, "List Data Roles")
+	helpers.PaginateResponse(c, roleResponses, total, page, limit, baseURL, search, "List Data Roles")
 }
 
 func CreateRole(c *gin.Context) {
@@ -196,7 +196,7 @@ func DeleteRole(c *gin.Context) {
 	}
 
 	if err := database.DB.Model(&role).Association("Permissions").Clear(); err != nil {
-		c.JSON(http.StatusNotFound, structs.ErrorResponse{
+		c.JSON(http.StatusInternalServerError, structs.ErrorResponse{
 			Success: false,
 			Message: "Failed to detach role from permissions",
 			Errors:  helpers.TranslateErrorMessage(err),
