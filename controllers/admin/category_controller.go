@@ -151,6 +151,12 @@ func DeleteCategory(c *gin.Context) {
 		})
 		return
 	}
+
+	c.JSON(http.StatusOK, structs.SuccessResponse{
+		Success: true,
+		Message: "Success delete category",
+		Data:    nil,
+	})
 }
 
 func FindAllCategories(c *gin.Context) {

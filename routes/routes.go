@@ -49,5 +49,12 @@ func SetupRouter() *gin.Engine {
 	protected.DELETE("/categories/:id", middlewares.Permission("categories-delete"), adminController.DeleteCategory)
 	protected.GET("/categories/all", middlewares.Permission("categories-index"), adminController.FindAllCategories)
 
+	// post routes
+	protected.GET("/posts", middlewares.Permission("posts-index"), adminController.FindPosts)
+	protected.POST("/posts", middlewares.Permission("posts-create"), adminController.CreatePost)
+	protected.GET("/posts/:id", middlewares.Permission("posts-show"), adminController.FindPostByID)
+	protected.PUT("/posts/:id", middlewares.Permission("posts-update"), adminController.UpdatePost)
+	protected.DELETE("/posts/:id", middlewares.Permission("posts-delete"), adminController.DeletPost)
+
 	return router
 }

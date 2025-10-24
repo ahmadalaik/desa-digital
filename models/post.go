@@ -9,7 +9,7 @@ type Post struct {
 	Slug       string    `json:"slug" gorm:"unique"`
 	Content    string    `json:"content"`
 	CategoryID uint      `json:"category_id"`
-	Category   string    `json:"category" gorm:"foreignKey:CategoryID"`
+	Category   Category    `json:"category" gorm:"foreignKey:CategoryID"`
 	UserID     uint      `json:"user_id"`
 	User       User      `json:"user" gorm:"foreignKey:UserID"`
 	CreatedAt  time.Time `json:"created_at"`
