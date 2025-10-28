@@ -31,7 +31,6 @@ type (
 		Price     int    `json:"price"`
 		Phone     string `json:"phone"`
 		Address   string `json:"address"`
-		UserID    uint   `json:"user_id"`
 		CreatedAt string `json:"created_at"`
 		UpdatedAt string `json:"updated_at"`
 	}
