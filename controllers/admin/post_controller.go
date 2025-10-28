@@ -184,7 +184,7 @@ func UpdatePost(c *gin.Context) {
 	if err := database.DB.First(&post, "id = ?", id).Error; err != nil {
 		c.JSON(http.StatusNotFound, structs.ErrorResponse{
 			Success: false,
-			Message: "Category not found",
+			Message: "Post not found",
 			Errors:  helpers.TranslateErrorMessage(err),
 		})
 		return
@@ -249,7 +249,7 @@ func UpdatePost(c *gin.Context) {
 
 	c.JSON(http.StatusOK, structs.SuccessResponse{
 		Success: true,
-		Message: "Post updated successfully",
+		Message: "Success update post",
 		Data: structs.PostResponse{
 			ID:         post.ID,
 			Image:      post.Image,
