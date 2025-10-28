@@ -75,5 +75,10 @@ func SetupRouter() *gin.Engine {
 	protected.POST("/photos", middlewares.Permission("photos-create"), adminController.CreatePhoto)
 	protected.DELETE("/photos/:id", middlewares.Permission("photos-delete"), adminController.DeletePhoto)
 
+	// slider routes
+	protected.GET("/sliders", middlewares.Permission("sliders-index"), adminController.FindSliders)
+	protected.POST("/sliders", middlewares.Permission("sliders-create"), adminController.CreateSlider)
+	protected.DELETE("/sliders/:id", middlewares.Permission("sliders-delete"), adminController.DeleteSlider)
+
 	return router
 }
