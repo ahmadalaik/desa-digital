@@ -112,5 +112,10 @@ func SetupRouter() *gin.Engine {
 	// slider routes
 	public.GET("/sliders", publicController.FindSliders)
 
+	// aparatur routes
+	public.GET("/aparaturs", publicController.FindAparaturs)
+	public.GET("/aparaturs/:id", publicController.FindAparaturByID)
+	public.GET("/aparaturs-home", publicController.FindAparatursHome)
+
 	return router
 }
