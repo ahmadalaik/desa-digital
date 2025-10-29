@@ -3,6 +3,7 @@ package routes
 import (
 	adminController "github.com/ahmadalaik/desa-digital/controllers/admin"
 	authController "github.com/ahmadalaik/desa-digital/controllers/auth"
+	publicController "github.com/ahmadalaik/desa-digital/controllers/public"
 	"github.com/ahmadalaik/desa-digital/middlewares"
 	"github.com/gin-gonic/gin"
 )
@@ -86,6 +87,14 @@ func SetupRouter() *gin.Engine {
 	protected.GET("/aparaturs/:id", middlewares.Permission("aparaturs-show"), adminController.FindAparaturByID)
 	protected.PUT("/aparaturs/:id", middlewares.Permission("aparaturs-update"), adminController.UpdateAparatur)
 	protected.DELETE("/aparaturs/:id", middlewares.Permission("aparaturs-delete"), adminController.DeleteAparatur)
+
+	// public routes
+	public := router.Group("/api/public")
+
+	// post routes
+	public.GET("/posts", publicController.FindPosts)
+	public.GET("/posts/:slug", publicController.FindPostBySlug)
+	public.GET("/posts-home", publicController.FindPostsHome)
 
 	return router
 }

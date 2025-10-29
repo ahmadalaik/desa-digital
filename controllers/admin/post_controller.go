@@ -44,11 +44,11 @@ func FindPosts(c *gin.Context) {
 			Slug:    post.Slug,
 			Content: post.Content,
 			Category: structs.CategorySimpleResponse{
-				ID:   post.CategoryID,
+				ID:   post.Category.ID,
 				Name: post.Category.Name,
 			},
 			User: structs.UserSimpleResponse{
-				ID:   post.UserID,
+				ID:   post.User.ID,
 				Name: post.User.Name,
 			},
 			CreatedAt: post.CreatedAt.Format("2006-01-02 15:04:05"),
