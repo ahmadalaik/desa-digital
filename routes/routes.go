@@ -109,5 +109,8 @@ func SetupRouter() *gin.Engine {
 	public.GET("/photos", publicController.FindPhotos)
 	public.GET("/photos-home", publicController.FindPhotosHome)
 
+	// slider routes
+	public.GET("/sliders", publicController.FindSliders)
+
 	return router
 }
