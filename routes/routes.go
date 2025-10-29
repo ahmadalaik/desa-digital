@@ -5,11 +5,19 @@ import (
 	authController "github.com/ahmadalaik/desa-digital/controllers/auth"
 	publicController "github.com/ahmadalaik/desa-digital/controllers/public"
 	"github.com/ahmadalaik/desa-digital/middlewares"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
+
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:  []string{"*"},
+		AllowMethods:  []string{"GET", "POST", "PUST", "DELETE", "OPTIONS"},
+		AllowHeaders:  []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders: []string{"Content-Length"},
+	}))
 
 	auth := router.Group("/api")
 	auth.POST("/login", authController.Login)
@@ -116,6 +124,9 @@ func SetupRouter() *gin.Engine {
 	public.GET("/aparaturs", publicController.FindAparaturs)
 	public.GET("/aparaturs/:id", publicController.FindAparaturByID)
 	public.GET("/aparaturs-home", publicController.FindAparatursHome)
+
+	// serve static file form public/uploads
+	router.Static("/static", "./public/uploads")
 
 	return router
 }
