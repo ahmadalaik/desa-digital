@@ -18,8 +18,10 @@ func Permission(permissionName string) gin.HandlerFunc {
 		}
 
 		var user models.User
-		err := database.DB.Preload("Roles.Permissions").
-			Where("username", "=", username).First(&user).Error
+		err := database.DB.
+			Preload("Roles.Permissions").
+			Where("username = ?", username).
+			First(&user).Error
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "User not found"})
 			c.Abort()

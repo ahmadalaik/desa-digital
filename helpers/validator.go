@@ -35,6 +35,10 @@ func TranslateErrorMessage(err error) map[string]string {
 	}
 
 	if err != nil {
+		if strings.Contains(err.Error(), "not the hash of the given password") {
+			errorsMap["Error"] = "Password doesn't match"
+		}
+
 		if strings.Contains(err.Error(), "Duplicate entry") {
 			field := extractDuplicateField(err.Error())
 			if field == "" {
